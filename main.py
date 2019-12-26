@@ -7,8 +7,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#odev3
-
 def cizdir(x,y,kumeler):
     sozluk={}
     renkler=['blue','red','green','gray','yellow','green']
@@ -17,8 +15,11 @@ def cizdir(x,y,kumeler):
             sozluk[kumeler[i]].append([x[i],y[i]])
         except:
             sozluk[kumeler[i]]=[[x[i], y[i]]]
-
-    adlar=sozluk.keys()
+    
+    adlar=[]
+    for m in sozluk.keys():
+        adlar.append(m)
+#    adlar=sozluk.keys()
 
     for i in range(len(sozluk)):
         for j in range(len(sozluk[adlar[i]])):
@@ -64,21 +65,13 @@ def yogunluk_tabanli(veri,eps,min_samples):
 ad="Iris"
 veri=pd.read_csv(ad+".csv")
 
-vog=int(raw_input("Veriler Otomatik Girilsin mi(0 - 1 (hayir - evet)): "))
-if vog == 1:
-    sinif_sutun_indexi=5#int(raw_input("Sinif sutun indexini girin: "))#5#
-    kmeans_k=3#int(raw_input("Kmeans icin k yi girin: "))#3#
-    dbscan_eps=1#float(raw_input("DBSCAN icin eps yi girin: "))#0.45#
-    dbscan_min_samples=5#int(raw_input("DBSCAN icin min. ornek sayisini girin: "))#8#
-else:
-    sinif_sutun_indexi =int(raw_input("Sinif sutun indexini girin: "))#5#
-    kmeans_k = int(raw_input("Kmeans icin k yi girin: "))#3#
-    dbscan_eps = float(raw_input("DBSCAN icin eps yi girin: "))#0.45#
-    dbscan_min_samples = int(raw_input("DBSCAN icin min. ornek sayisini girin: "))#8#
+sinif_sutun_indexi=5#int(raw_input("Sinif sutun indexini girin: "))#5#
+kmeans_k=3#int(raw_input("Kmeans icin k yi girin: "))#3#
+dbscan_eps=1#float(raw_input("DBSCAN icin eps yi girin: "))#0.45#
+dbscan_min_samples=5#int(raw_input("DBSCAN icin min. ornek sayisini girin: "))#8#
 
-if ad=="Iris":
-    veri=veri.drop('Id',axis=1)
-    sinif_sutun_indexi=4
+veri=veri.drop('Id',axis=1)
+sinif_sutun_indexi=4
 
 #kategorik veri indexlerini bulma
 sutun_adlari=veri.columns.tolist()
